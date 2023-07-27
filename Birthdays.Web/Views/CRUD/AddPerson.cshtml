@@ -1,0 +1,26 @@
+﻿@using System.Runtime.InteropServices
+@using Birthdays.Core.Dtos
+@using Birthdays.Core.Entities
+
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<div class="center">
+    <form asp-action="AddPerson" asp-controller="CRUD" method="post" enctype="multipart/form-data">
+        <label>Name:</label><br />
+        <input type="text" name="name" /><br />
+        <label>Date:</label><br />
+        <input type="date" name="birthday" /><br />
+        <label>Photo:</label><br />
+        <input type="file" name="uploadedFile" /><br>
+        <input type="submit" value="Send" />
+        <br>
+        <a asp-controller="Home" asp-action="Index">
+                    <input type="button" class="btn btn-primary" value="Вернуться на главный экран"/>
+                </a>
+    </form>
+</div>

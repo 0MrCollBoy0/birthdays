@@ -1,0 +1,21 @@
+﻿@using System.Runtime.InteropServices
+@using Birthdays.Core.Dtos
+@using Birthdays.Core.Entities
+@model PersonDto;
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<div class="center">
+    <label>Уверены ли вы, что хотите удалить данную запись?</label><br/>
+    <form asp-action="DeletePerson" asp-controller="CRUD" method="post" enctype="multipart/form-data">
+        <label>Name: @Model.Name</label><br/>
+        <input type="submit" value="Send"/> <br/>
+        <a asp-controller="Home" asp-action="Index">
+            <input type="button" class="btn btn-primary" value="Вернуться на главный экран"/>
+        </a>
+    </form>
+</div>

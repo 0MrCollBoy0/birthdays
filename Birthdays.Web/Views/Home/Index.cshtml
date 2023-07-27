@@ -1,0 +1,46 @@
+﻿@using System.Runtime.InteropServices
+@using Birthdays.Core.Dtos
+@using Birthdays.Core.Entities
+@model IEnumerable<Birthdays.Core.Dtos.PersonDto>
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="center">
+    <form method="post">
+     
+        <input name="method" type="radio" value="1" />
+        <span>Весь список дней рождения</span> <br />
+        <input name="method" type="radio" value="2" />
+        <span>Близжайшие дни рождения</span>
+        <p>
+            <input type="submit" value="Send" />
+        </p>
+        <a asp-controller="CRUD" asp-action="AddPerson">
+            <input type="button" class="btn btn-primary" value="Добавить запись"/>
+        </a>
+    </form>
+   
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Id</th> <th>Name</th> <th>Birthday</th> <th>Photo</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (PersonDto person in Model)
+        {
+            <tr>
+                <td>@person.Id</td><td>@person.Name</td><td>@person.Birthday.ToLongDateString()</td><td> <img src="data:image/png;base64, @person.Image" alt="Red dot" width="50" height="50" /></td>
+                <td><a asp-controller="CRUD" asp-action="UpdatePerson" asp-route-id="@person.Id">
+                        <input type="button" class="btn btn-primary" value="Update"/>
+                    </a></td>
+                <td><a asp-controller="CRUD" asp-action="DeletePerson" asp-route-id="@person.Id">
+                    <input type="button" class="btn btn-primary" value="Delete"/>
+                    </a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
